@@ -1,0 +1,16 @@
+{
+  "name": "isotope",
+  "repo": "lauramelos/isotope",
+  "description": "Isotope component wrapper",
+  "version": "1.5.21",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "jquery.isotope.js"
+  ],
+  "styles": [
+    "isotope.css"
+  ]
+}
