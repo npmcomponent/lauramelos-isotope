@@ -1,12 +1,14 @@
 /**
- * Isotope v1.5.21
+ * Isotope v1.5.25
  * An exquisite jQuery plugin for magical layouts
  * http://isotope.metafizzy.co
  *
- * Commercial use requires one-time license fee
- * http://metafizzy.co/#licenses
+ * Commercial use requires one-time purchase of a commercial license
+ * http://isotope.metafizzy.co/docs/license.html
  *
- * Copyright 2012 David DeSandro / Metafizzy
+ * Non-commercial use is licensed under the MIT License
+ *
+ * Copyright 2013 Metafizzy
  */
 
 /*jshint asi: true, browser: true, curly: true, eqeqeq: true, forin: false, immed: false, newcap: true, noempty: true, strict: true, undef: true */
@@ -280,6 +282,7 @@
    */
 
   var $event = $.event,
+      dispatchMethod = $.event.handle ? 'handle' : 'dispatch',
       resizeTimeout;
 
   $event.special.smartresize = {
@@ -299,7 +302,7 @@
 
       if ( resizeTimeout ) { clearTimeout( resizeTimeout ); }
       resizeTimeout = setTimeout(function() {
-        jQuery.event.handle.apply( context, args );
+        $event[ dispatchMethod ].apply( context, args );
       }, execAsap === "execAsap"? 0 : 100 );
     }
   };
@@ -426,6 +429,11 @@
           $atoms = selector ? $elems.filter( selector ).add( $elems.find( selector ) ) : $elems,
           // base style for atoms
           atomStyle = { position: 'absolute' };
+
+      // filter out text nodes
+      $atoms = $atoms.filter( function( i, atom ) {
+        return atom.nodeType === 1;
+      });
 
       if ( this.usingTransforms ) {
         atomStyle.left = 0;
