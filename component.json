@@ -10,9 +10,11 @@
   "development": {},
   "license": "MIT",
   "scripts": [
-    "index.js"
+    "jquery.isotope.js"
   ],
   "styles": [
     "isotope.css"
-  ]
+  ],
+  "main": "jquery.isotope.js"
+
 }
